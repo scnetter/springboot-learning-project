@@ -10,14 +10,14 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-    record Video(String name) {}
-    List<Video> videos = List.of(
-            new Video("Need HELP with your Spring Boot 3 App?"),
-            new Video("Don't do THIS to your own CODE!"),
-            new Video("SECRETS to fix BROKEN CODE!"));
+    public final VideoService videoService;
+
+    public HomeController(VideoService videoService){
+        this.videoService = videoService;
+    }
     @GetMapping("/")
     public String index(Model model){
-        model.addAttribute("videos", videos);
+        model.addAttribute("videos", videoService.getVideos());
         return "index";
    }
 }
