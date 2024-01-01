@@ -34,6 +34,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.eirslett</groupId>
+			<artifactId>frontend-plugin-core</artifactId>
+			<version>1.15.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -41,6 +46,33 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+				<!-- ...other plugins... -->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-plugin-core</artifactId>
+				<version>1.15.0</version> <!-- Use the latest version -->
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v16.13.0</nodeVersion> <!-- Specify your desired Node.js version -->
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<!-- Optional: Specify the npm commands you want to run -->
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
